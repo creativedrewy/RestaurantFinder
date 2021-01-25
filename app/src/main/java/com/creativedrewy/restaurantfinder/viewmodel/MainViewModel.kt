@@ -13,7 +13,7 @@ class MainViewModel @ViewModelInject constructor(
 
 ) : ViewModel() {
 
-    val viewState: MutableLiveData<TickerViewState> = MutableLiveData()
+    val viewState: MutableLiveData<ListViewState> = MutableLiveData()
 
     fun loadStocks() {
         viewState.postValue(Loading)

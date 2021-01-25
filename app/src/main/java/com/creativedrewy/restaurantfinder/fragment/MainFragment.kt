@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.creativedrewy.restaurantfinder.adapter.StockListAdapter
+import com.creativedrewy.restaurantfinder.adapter.RestaurantListAdapter
 import com.creativedrewy.restaurantfinder.databinding.MainFragmentBinding
 import com.creativedrewy.restaurantfinder.viewmodel.ErrorResult
 import com.creativedrewy.restaurantfinder.viewmodel.Loading
 import com.creativedrewy.restaurantfinder.viewmodel.MainViewModel
-import com.creativedrewy.restaurantfinder.viewmodel.StockList
+import com.creativedrewy.restaurantfinder.viewmodel.RestaurantList
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,13 +26,13 @@ class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
 
-    private val adapter by lazy { StockListAdapter() }
+    private val adapter by lazy { RestaurantListAdapter() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewBinding = MainFragmentBinding.inflate(inflater, container, false)
 
-        viewBinding.stockListRecyclerview.layoutManager = LinearLayoutManager(requireContext())
-        viewBinding.stockListRecyclerview.adapter = adapter
+        viewBinding.restaurantListRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+        viewBinding.restaurantListRecyclerview.adapter = adapter
 
         return viewBinding.root
     }
@@ -45,18 +45,12 @@ class MainFragment : Fragment() {
                 is Loading -> {
                     adapter.submitList(it.loadingItems)
                 }
-                is StockList -> {
-                    if (it.stocks.isEmpty()) {
-                        viewBinding.emptyIconTextview.visibility = View.VISIBLE
-                        viewBinding.emptyResultTextview.visibility = View.VISIBLE
-                        adapter.submitList(listOf())
-                    } else {
-                        adapter.submitList(it.stocks)
-                    }
+                is RestaurantList -> {
+                    adapter.submitList(it.restaurants)
                 }
                 is ErrorResult -> {
                     with (viewBinding) {
-                        stockListRecyclerview.visibility = View.GONE
+                        restaurantListRecyclerview.visibility = View.GONE
                         cryTextview.visibility = View.VISIBLE
                         sorryTextTextview.visibility = View.VISIBLE
                     }

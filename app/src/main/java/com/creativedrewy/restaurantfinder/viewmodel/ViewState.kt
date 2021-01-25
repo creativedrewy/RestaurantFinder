@@ -1,24 +1,21 @@
 package com.creativedrewy.restaurantfinder.viewmodel
 
-sealed class TickerViewState
+sealed class ListViewState
 
-object Loading : TickerViewState() {
+object Loading : ListViewState() {
     val loadingItems = listOf(
-        StockDetails(isLoading = true),
-        StockDetails(isLoading = true)
+        RestaurantDetails(isLoading = true),
+        RestaurantDetails(isLoading = true)
     )
 }
 
-object ErrorResult: TickerViewState()
+object ErrorResult: ListViewState()
 
-data class StockList(
-    val stocks: List<StockDetails>
-): TickerViewState()
+data class RestaurantList(
+    val restaurants: List<RestaurantDetails>
+): ListViewState()
 
-data class StockDetails(
+data class RestaurantDetails(
     val isLoading: Boolean = false,
-    val ticker: String = "",
-    val displayName: String = "",
-    val displayPrice: String = "",
-    val quantity: Int = 0
+    val displayName: String = ""
 )

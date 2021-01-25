@@ -1,7 +1,7 @@
 package com.creativedrewy.restaurantfinder.injection
 
 import com.creativedrewy.restaurantfinder.BuildConfig
-import com.creativedrewy.restaurantfinder.api.TickerEndpoints
+import com.creativedrewy.restaurantfinder.api.RestaurantsEndpoints
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 @InstallIn(ApplicationComponent::class)
-class StockTickerModule {
+class RestaurantFinderModule {
 
     @Provides
     fun provideRetrofit(): Retrofit {
@@ -22,7 +22,7 @@ class StockTickerModule {
     }
 
     @Provides
-    fun provideTickerEndpoints(retrofit: Retrofit): TickerEndpoints {
-        return retrofit.create(TickerEndpoints::class.java)
+    fun provideRestaurantsEndpoints(retrofit: Retrofit): RestaurantsEndpoints {
+        return retrofit.create(RestaurantsEndpoints::class.java)
     }
 }
