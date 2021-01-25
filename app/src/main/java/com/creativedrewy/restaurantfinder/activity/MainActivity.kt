@@ -3,7 +3,7 @@ package com.creativedrewy.restaurantfinder.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.creativedrewy.restaurantfinder.R
-import com.creativedrewy.restaurantfinder.fragment.MainFragment
+import com.creativedrewy.restaurantfinder.fragment.RestaurantListFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
+                .replace(R.id.container, RestaurantListFragment.newInstance())
                 .commitNow()
         }
     }

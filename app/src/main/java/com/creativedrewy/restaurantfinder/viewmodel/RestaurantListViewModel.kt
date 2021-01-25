@@ -4,13 +4,13 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.creativedrewy.restaurantfinder.usecase.RestaurantsSourceUseCase
+import com.creativedrewy.restaurantfinder.usecase.RestaurantsListUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MainViewModel @ViewModelInject constructor(
-    val restaurantsUseCase: RestaurantsSourceUseCase
+class RestaurantListViewModel @ViewModelInject constructor(
+    private val restaurantsUseCase: RestaurantsListUseCase
 ) : ViewModel() {
 
     val viewState: MutableLiveData<ListViewState> = MutableLiveData()
@@ -26,11 +26,9 @@ class MainViewModel @ViewModelInject constructor(
 
                     val result = restaurantsUseCase.listRestaurants(37.422740.toLong(), -122.139956.toLong())
                     viewState.postValue(RestaurantList(
-                        restaurants = listOf(
-                            RestaurantDetails(isLoading = false, displayName = "Test"),
-                            RestaurantDetails(isLoading = false, displayName = "Test 2"),
-                            RestaurantDetails(isLoading = false, displayName = "Test")
-                        )
+                        restaurants = result.stores.map {
+                            RestaurantDetails(isLoading = false, displayName = it.name)
+                        }
                     ))
                 } catch (e: Exception) {
                     viewState.postValue(ErrorResult)

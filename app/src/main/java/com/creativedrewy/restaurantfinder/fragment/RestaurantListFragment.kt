@@ -8,28 +8,28 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.creativedrewy.restaurantfinder.adapter.RestaurantListAdapter
-import com.creativedrewy.restaurantfinder.databinding.MainFragmentBinding
+import com.creativedrewy.restaurantfinder.databinding.RestaurantListFragmentBinding
 import com.creativedrewy.restaurantfinder.viewmodel.ErrorResult
 import com.creativedrewy.restaurantfinder.viewmodel.Loading
-import com.creativedrewy.restaurantfinder.viewmodel.MainViewModel
 import com.creativedrewy.restaurantfinder.viewmodel.RestaurantList
+import com.creativedrewy.restaurantfinder.viewmodel.RestaurantListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainFragment : Fragment() {
+class RestaurantListFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = RestaurantListFragment()
     }
 
-    private lateinit var viewBinding: MainFragmentBinding
+    private lateinit var viewBinding: RestaurantListFragmentBinding
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: RestaurantListViewModel by viewModels()
 
     private val adapter by lazy { RestaurantListAdapter() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        viewBinding = MainFragmentBinding.inflate(inflater, container, false)
+        viewBinding = RestaurantListFragmentBinding.inflate(inflater, container, false)
 
         viewBinding.restaurantListRecyclerview.layoutManager = LinearLayoutManager(requireContext())
         viewBinding.restaurantListRecyclerview.adapter = adapter
