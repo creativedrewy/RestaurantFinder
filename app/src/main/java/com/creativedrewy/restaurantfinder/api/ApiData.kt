@@ -1,5 +1,6 @@
 package com.creativedrewy.restaurantfinder.api
 
 data class RestaurantListDto(
-    val restaurants: List<String>
+    val numResults: Int,
+    val nextOffset: Int
 )

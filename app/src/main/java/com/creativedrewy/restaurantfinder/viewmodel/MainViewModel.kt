@@ -4,12 +4,13 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.creativedrewy.restaurantfinder.usecase.RestaurantsSourceUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainViewModel @ViewModelInject constructor(
-
+    val restaurantsUseCase: RestaurantsSourceUseCase
 ) : ViewModel() {
 
     val viewState: MutableLiveData<ListViewState> = MutableLiveData()
@@ -23,7 +24,7 @@ class MainViewModel @ViewModelInject constructor(
                     //Put this in here so it forces the UI to show my snazzy loading animation :)
                     //delay(2000)
 
-//                    val result =
+                    val result = restaurantsUseCase.listRestaurants(37.422740.toLong(), -122.139956.toLong())
                     viewState.postValue(RestaurantList(
                         restaurants = listOf(
                             RestaurantDetails(isLoading = false, displayName = "Test"),

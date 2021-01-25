@@ -36,11 +36,11 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField "String", "RESTAURANTS_BASE_URL", "\"\""
+            buildConfigField "String", "RESTAURANTS_BASE_URL", "\"https://api.doordash.com/\""
         }
 
         release {
-            buildConfigField "String", "RESTAURANTS_BASE_URL", "\"\""
+            buildConfigField "String", "RESTAURANTS_BASE_URL", "\"https://api.doordash.com/\""
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
