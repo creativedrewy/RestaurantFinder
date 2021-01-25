@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">StockTicker</string>
+    <string name="cry_text">😿</string>
+    <string name="error_loading">Sorry, we had a problem loading your data</string>
+    <string name="empty_icon">💰</string>
+    <string name="empty_result">Nothing to show, go buy some stocks!</string>
+</resources>
