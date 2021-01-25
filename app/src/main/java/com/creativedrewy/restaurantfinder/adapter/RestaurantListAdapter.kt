@@ -2,6 +2,7 @@ package com.creativedrewy.restaurantfinder.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.constraintlayout.motion.widget.MotionScene
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -21,17 +22,11 @@ class RestaurantListAdapter: ListAdapter<RestaurantDetails, RestaurantListAdapte
 
     class ViewHolder(private val binding: ItemRestaurantListBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(restaurant: RestaurantDetails) {
-            //if (!restaurant.isLoading) {
-//            binding.itemMotionlayout.getTransition(R.id.loading_transition).autoTransition = MotionScene.Transition.AUTO_NONE
-//            binding.itemMotionlayout.getTransition(R.id.repeat_transition).autoTransition = MotionScene.Transition.AUTO_NONE
-//            binding.itemMotionlayout.transitionToState(R.id.fully_loaded)
-            //}
-
-//            if (!restaurant.isLoading) {
-//                binding.numberTextview.text = ""
-//            } else {
-//                binding.numberTextview.text = "           "
-//            }
+            if (!restaurant.isLoading) {
+                binding.itemMotionlayout.getTransition(R.id.loading_transition).autoTransition = MotionScene.Transition.AUTO_NONE
+                binding.itemMotionlayout.getTransition(R.id.reset_transition).autoTransition = MotionScene.Transition.AUTO_NONE
+                binding.itemMotionlayout.transitionToState(R.id.loading_end)
+            }
 
             Glide.with(binding.root)
                 .load(restaurant.imageUrl)
