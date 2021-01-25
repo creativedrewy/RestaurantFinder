@@ -58,7 +58,7 @@ class MainFragment : Fragment() {
             }
         })
 
-        viewModel.loadStocks()
+        viewModel.loadRestaurants()
     }
 
 }
