@@ -18,6 +18,13 @@
             app:layout_constraintBottom_toBottomOf="@+id/desc_textview"
             app:layout_constraintTop_toTopOf="@+id/desc_textview"
             app:layout_constraintStart_toStartOf="@+id/desc_textview" />
+        <Constraint
+            android:id="@+id/view3_loading"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/status_textview"
+            app:layout_constraintTop_toTopOf="@+id/status_textview"
+            app:layout_constraintStart_toStartOf="@+id/status_textview" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -36,6 +43,13 @@
             app:layout_constraintBottom_toBottomOf="@+id/desc_textview"
             app:layout_constraintTop_toTopOf="@+id/desc_textview"
             app:layout_constraintStart_toStartOf="@+id/desc_textview" />
+        <Constraint
+            android:id="@+id/view3_loading"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/status_textview"
+            app:layout_constraintTop_toTopOf="@+id/status_textview"
+            app:layout_constraintStart_toStartOf="@+id/status_textview" />
     </ConstraintSet>
 
     <Transition
@@ -67,6 +81,14 @@
             app:layout_constraintBottom_toBottomOf="@+id/desc_textview"
             app:layout_constraintTop_toTopOf="@+id/desc_textview"
             app:layout_constraintStart_toStartOf="@+id/desc_textview"
+            android:alpha="0.0" />
+        <Constraint
+            android:id="@+id/view3_loading"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/status_textview"
+            app:layout_constraintTop_toTopOf="@+id/status_textview"
+            app:layout_constraintStart_toStartOf="@+id/status_textview"
             android:alpha="0.0" />
     </ConstraintSet>
 </MotionScene>
