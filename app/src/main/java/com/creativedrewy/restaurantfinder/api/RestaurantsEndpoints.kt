@@ -7,8 +7,8 @@ interface RestaurantsEndpoints {
 
     @GET("v1/store_feed/")
     suspend fun loadRestaurantList(
-        @Query("lat") lat: Long,
-        @Query("lng") long: Long,
+        @Query("lat") lat: Double,
+        @Query("lng") long: Double,
         @Query("offset") offset: Int,
         @Query("limit") limit: Int
     ): RestaurantListDto

@@ -15,7 +15,7 @@ class RestaurantListViewModel @ViewModelInject constructor(
 
     val viewState: MutableLiveData<ListViewState> = MutableLiveData()
 
-    fun loadRestaurants() {
+    fun loadRestaurants(latitude: Double, longitude: Double) {
         viewState.postValue(Loading)
 
         viewModelScope.launch {
@@ -24,7 +24,7 @@ class RestaurantListViewModel @ViewModelInject constructor(
                     //Put this in here so it forces the UI to show my snazzy loading animation :)
                     //delay(2000)
 
-                    val result = restaurantsUseCase.listRestaurants(37.422740.toLong(), -122.139956.toLong())
+                    val result = restaurantsUseCase.listRestaurants(latitude, longitude)
                     viewState.postValue(RestaurantList(
                         restaurants = result.stores.map {
                             RestaurantDetails(

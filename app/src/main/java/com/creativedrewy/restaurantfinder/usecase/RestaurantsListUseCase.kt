@@ -14,7 +14,7 @@ class RestaurantsListUseCase @Inject constructor(
     private var listOffset: Int = 0
     private var loadLimit: Int = 50
 
-    suspend fun listRestaurants(lat: Long, long: Long): RestaurantListDto {
+    suspend fun listRestaurants(lat: Double, long: Double): RestaurantListDto {
         return restaurantsRepository.loadRestaurants(lat, long, listOffset, loadLimit)
     }
 

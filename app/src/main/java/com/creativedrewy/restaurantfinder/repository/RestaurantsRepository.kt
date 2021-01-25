@@ -11,7 +11,7 @@ class RestaurantsRepository @Inject constructor(
     private val endpoints: RestaurantsEndpoints
 ) {
 
-    suspend fun loadRestaurants(lat: Long, long: Long, offset: Int, limit: Int): RestaurantListDto {
+    suspend fun loadRestaurants(lat: Double, long: Double, offset: Int, limit: Int): RestaurantListDto {
         return endpoints.loadRestaurantList(lat, long, offset, limit)
     }
 

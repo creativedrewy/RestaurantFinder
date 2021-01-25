@@ -58,7 +58,11 @@ class RestaurantListFragment : Fragment() {
             }
         })
 
-        viewModel.loadRestaurants()
+        //Currently hard-coded to DoorDash HQ coords
+        val lat = 37.422740
+        val long = -122.139956
+
+        viewModel.loadRestaurants(lat, long)
     }
 
 }
