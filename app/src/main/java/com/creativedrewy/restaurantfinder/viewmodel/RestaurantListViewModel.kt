@@ -27,7 +27,13 @@ class RestaurantListViewModel @ViewModelInject constructor(
                     val result = restaurantsUseCase.listRestaurants(37.422740.toLong(), -122.139956.toLong())
                     viewState.postValue(RestaurantList(
                         restaurants = result.stores.map {
-                            RestaurantDetails(isLoading = false, displayName = it.name)
+                            RestaurantDetails(
+                                isLoading = false,
+                                displayName = it.name,
+                                desc = it.description,
+                                status = "10 mins",
+                                imageUrl = it.coverImgUrl
+                            )
                         }
                     ))
                 } catch (e: Exception) {

@@ -17,5 +17,8 @@ data class RestaurantList(
 
 data class RestaurantDetails(
     val isLoading: Boolean = false,
-    val displayName: String = ""
+    val displayName: String = "",
+    val desc: String = "",
+    val status: String = "",
+    val imageUrl: String = ""
 )
