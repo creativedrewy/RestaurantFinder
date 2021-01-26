@@ -16,6 +16,7 @@ data class RestaurantList(
 ): ListViewState()
 
 data class RestaurantDetails(
+    val id: Int = -1,
     val isLoading: Boolean = false,
     val displayName: String = "",
     val desc: String = "",

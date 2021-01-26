@@ -53,6 +53,7 @@ class ListItemViewStateMappingTest: Spek({
             }
 
             Then("The non-status props are set correctly") {
+                assertTrue { result.id == testId }
                 assertTrue { result.displayName == testName }
                 assertTrue { result.desc == testDesc }
                 assertTrue { result.imageUrl == testUrl }

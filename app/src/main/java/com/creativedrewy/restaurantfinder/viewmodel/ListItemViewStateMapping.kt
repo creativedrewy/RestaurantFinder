@@ -12,6 +12,7 @@ class ListItemViewStateMapping @Inject constructor(
 
     fun mapDtoToViewState(dto: RestaurantDto, loading: Boolean = false): RestaurantDetails {
         return RestaurantDetails(
+            id = dto.id,
             isLoading = loading,
             displayName = dto.name,
             desc = dto.description,

@@ -18,10 +18,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RestaurantListFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = RestaurantListFragment()
-    }
-
     private lateinit var viewBinding: RestaurantListFragmentBinding
 
     private val viewModel: RestaurantListViewModel by viewModels()
