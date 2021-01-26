@@ -39,7 +39,8 @@ class RestaurantDetailsFragment : Fragment() {
 
                 }
                 is DetailsError -> {
-
+                    viewBinding.detailCryTexview.visibility = View.VISIBLE
+                    viewBinding.detailErrorTexview.visibility = View.VISIBLE
                 }
                 is RestaurantLoaded -> {
                     with (viewBinding) {
@@ -47,11 +48,12 @@ class RestaurantDetailsFragment : Fragment() {
                         storeDescTextview.text = it.details.desc
                         phoneTextview.text = it.details.phoneNumber
                         storeStatusTextview.text = it.details.status
-                        deliveryFeeTexview.text = resources.getString(R.string.price_display, it.details.deliveryFee)
-                        ratingTextview.text = resources.getString(R.string.rating_display, it.details.rating)
+                        deliveryFeeTexview.text = resources.getString(R.string.price_display, it.details.deliveryFee.toString())
+                        ratingTextview.text = resources.getString(R.string.rating_display, it.details.rating.toString())
 
                         Glide.with(requireContext())
                             .load(it.details.imageUrl)
+                            .placeholder(R.drawable.ic_image_placeholder_24)
                             .centerCrop()
                             .into(headerImageview)
                     }

@@ -106,4 +106,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone_textview" />
 
+    <TextView
+        android:id="@+id/detail_cry_texview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cry_text"
+        android:textSize="80sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/header_imageview"
+        app:layout_constraintVertical_bias="0.50" />
+
+    <TextView
+        android:id="@+id/detail_error_texview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/error_loading"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_cry_texview" />
+
 </androidx.constraintlayout.motion.widget.MotionLayout>
