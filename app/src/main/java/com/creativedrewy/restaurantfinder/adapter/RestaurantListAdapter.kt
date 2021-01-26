@@ -30,11 +30,11 @@ class RestaurantListAdapter: ListAdapter<RestaurantDetails, RestaurantListAdapte
                 binding.itemMotionlayout.transitionToState(R.id.loading_end)
 
                 binding.restaurantImageview.alpha = 1.0f
+
+                binding.root.setOnClickListener { onClick(restaurant.id) }
             } else {
                 binding.restaurantImageview.alpha = 0.4f
             }
-
-            binding.root.setOnClickListener { onClick(restaurant.id) }
 
             Glide.with(binding.root)
                 .load(restaurant.imageUrl)

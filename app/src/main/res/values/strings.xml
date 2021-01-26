@@ -4,4 +4,6 @@
     <string name="error_loading">Sorry, we had a problem loading your data</string>
     <string name="store_closed">Closed</string>
     <string name="asap_minutes">mins</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

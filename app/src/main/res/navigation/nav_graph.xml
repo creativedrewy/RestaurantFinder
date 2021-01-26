@@ -9,5 +9,17 @@
         android:id="@+id/restaurantListFragment"
         android:name="com.creativedrewy.restaurantfinder.fragment.RestaurantListFragment"
         android:label="restaurant_list_fragment"
-        tools:layout="@layout/restaurant_list_fragment" />
+        tools:layout="@layout/restaurant_list_fragment" >
+        <action
+            android:id="@+id/action_restaurantListFragment_to_restaurantDetailsFragment"
+            app:destination="@id/restaurantDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantDetailsFragment"
+        android:name="com.creativedrewy.restaurantfinder.fragment.RestaurantDetailsFragment"
+        android:label="RestaurantDetailsFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 </navigation>
