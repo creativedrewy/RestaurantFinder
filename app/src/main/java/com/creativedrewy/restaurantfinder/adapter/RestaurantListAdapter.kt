@@ -12,16 +12,18 @@ import com.creativedrewy.restaurantfinder.viewmodel.RestaurantDetails
 
 class RestaurantListAdapter: ListAdapter<RestaurantDetails, RestaurantListAdapter.ViewHolder>(RestaurantDiffCallback()) {
 
+    var rowClickListener: (Int) -> Unit = { _ -> }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(ItemRestaurantListBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), rowClickListener)
     }
 
     class ViewHolder(private val binding: ItemRestaurantListBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(restaurant: RestaurantDetails) {
+        fun bind(restaurant: RestaurantDetails, onClick: (Int) -> Unit = { _ -> }) {
             if (!restaurant.isLoading) {
                 binding.itemMotionlayout.getTransition(R.id.loading_transition).autoTransition = MotionScene.Transition.AUTO_NONE
                 binding.itemMotionlayout.getTransition(R.id.reset_transition).autoTransition = MotionScene.Transition.AUTO_NONE
@@ -31,6 +33,8 @@ class RestaurantListAdapter: ListAdapter<RestaurantDetails, RestaurantListAdapte
             } else {
                 binding.restaurantImageview.alpha = 0.4f
             }
+
+            binding.root.setOnClickListener { onClick(restaurant.id) }
 
             Glide.with(binding.root)
                 .load(restaurant.imageUrl)
