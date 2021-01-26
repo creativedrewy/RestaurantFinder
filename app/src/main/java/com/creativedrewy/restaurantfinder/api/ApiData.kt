@@ -18,3 +18,14 @@ data class RestaurantStatusDto(
     val unavailableReason: String?,
     val asapMinutesRange: List<Int>
 )
+
+data class RestaurantInfoDto(
+    val phoneNumber: String,
+    val yelpReviewCount: Int,
+    val deliveryFee: Double,
+    val averageRating: Double,
+    val status: String,
+    val description: String,
+    val name: String,
+    val coverImgUrl: String
+)

@@ -1,6 +1,7 @@
 package com.creativedrewy.restaurantfinder.api
 
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface RestaurantsEndpoints {
@@ -12,5 +13,8 @@ interface RestaurantsEndpoints {
         @Query("offset") offset: Int,
         @Query("limit") limit: Int
     ): RestaurantListDto
+
+    @GET("v2/restaurant/{id}/")
+    suspend fun loadRestaurantInfo(@Path("id") id: Int): RestaurantInfoDto
 
 }
