@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.creativedrewy.restaurantfinder.R
 import com.creativedrewy.restaurantfinder.databinding.FragmentRestaurantDetailsBinding
 import com.creativedrewy.restaurantfinder.viewmodel.DetailsError
 import com.creativedrewy.restaurantfinder.viewmodel.DetailsLoading
@@ -40,7 +42,19 @@ class RestaurantDetailsFragment : Fragment() {
 
                 }
                 is RestaurantLoaded -> {
+                    with (viewBinding) {
+                        storeNameTextview.text = it.details.displayName
+                        storeDescTextview.text = it.details.desc
+                        phoneTextview.text = it.details.phoneNumber
+                        storeStatusTextview.text = it.details.status
+                        deliveryFeeTexview.text = resources.getString(R.string.price_display, it.details.deliveryFee)
+                        ratingTextview.text = resources.getString(R.string.rating_display, it.details.rating)
 
+                        Glide.with(requireContext())
+                            .load(it.details.imageUrl)
+                            .centerCrop()
+                            .into(headerImageview)
+                    }
                 }
             }
         }
