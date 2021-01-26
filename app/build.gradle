@@ -28,6 +28,8 @@ android {
                 }
             }
         }
+
+        unitTests.returnDefaultValues = true
     }
 
     buildFeatures {

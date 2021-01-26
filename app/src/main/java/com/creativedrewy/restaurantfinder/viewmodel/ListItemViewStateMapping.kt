@@ -20,13 +20,21 @@ class ListItemViewStateMapping @Inject constructor(
         )
     }
 
+    /**
+     * I couldn't find any api results that had a non-null "closed reason" status value,
+     * so I am just making a choice that non-null will mean a restaurant is closed.
+     *
+     * Also the "mins" concatenation isn't localization-friendly at all but is implemented
+     * so I can drop some simple unit tests. A better implementation would be some sort of string-
+     * providing abstraction.
+     */
     private fun getStatusString(statusDto: RestaurantStatusDto): String {
         return when {
             statusDto.unavailableReason != null -> resources.getString(R.string.store_closed)
-            statusDto.asapMinutesRange.size == 1 -> resources.getString(R.string.asap_minutes, statusDto.asapMinutesRange[0])
+            statusDto.asapMinutesRange.size == 1 -> "${ statusDto.asapMinutesRange[0] } ${ resources.getString(R.string.asap_minutes) }"
             statusDto.asapMinutesRange.size == 2 -> {
                 val average = ((statusDto.asapMinutesRange[0] + statusDto.asapMinutesRange[1]).toDouble() / 2).toInt()
-                resources.getString(R.string.asap_minutes, average)
+                "$average ${ resources.getString(R.string.asap_minutes) }"
             }
             else -> ""
         }
