@@ -10,6 +10,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * ViewModel for restaurant list screen
+ */
 class RestaurantListViewModel @ViewModelInject constructor(
     private val restaurantsUseCase: RestaurantsListUseCase,
     private val viewStateMapping: ListItemViewStateMapping

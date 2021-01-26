@@ -18,6 +18,9 @@ data class RestaurantList(
 data class RestaurantDetails(
     val id: Int = -1,
     val isLoading: Boolean = false,
+    val phoneNumber: String = "",
+    val deliveryFee: Double = 0.0,
+    val rating: Double = 0.0,
     val displayName: String = "",
     val desc: String = "",
     val status: String = "",

@@ -21,7 +21,6 @@ data class RestaurantStatusDto(
 
 data class RestaurantInfoDto(
     val phoneNumber: String,
-    val yelpReviewCount: Int,
     val deliveryFee: Double,
     val averageRating: Double,
     val status: String,

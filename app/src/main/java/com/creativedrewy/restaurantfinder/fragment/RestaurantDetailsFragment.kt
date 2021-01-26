@@ -8,7 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.creativedrewy.restaurantfinder.databinding.FragmentRestaurantDetailsBinding
+import com.creativedrewy.restaurantfinder.viewmodel.DetailsError
+import com.creativedrewy.restaurantfinder.viewmodel.DetailsLoading
 import com.creativedrewy.restaurantfinder.viewmodel.RestaurantDetailsViewModel
+import com.creativedrewy.restaurantfinder.viewmodel.RestaurantLoaded
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,7 +32,17 @@ class RestaurantDetailsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewModel.viewState.observe(viewLifecycleOwner) {
+            when (it) {
+                is DetailsLoading -> {
 
+                }
+                is DetailsError -> {
+
+                }
+                is RestaurantLoaded -> {
+
+                }
+            }
         }
 
         viewModel.loadRestaurant(safeArgs.id)
