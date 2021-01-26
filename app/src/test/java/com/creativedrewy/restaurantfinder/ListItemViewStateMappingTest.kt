@@ -115,5 +115,24 @@ class ListItemViewStateMappingTest: Spek({
                 assertTrue { result.status == "15 sample" }
             }
         }
+
+        Scenario("The API returns an invalid restaurant status") {
+            lateinit var dto: RestaurantDto
+            lateinit var result: RestaurantDetails
+
+            Given("An invalid restaurant status") {
+                dto = baseDto.copy(
+                    status = RestaurantStatusDto(null, listOf())
+                )
+            }
+
+            When("Mapping the view state") {
+                result = stateMapping.mapDtoToViewState(dto)
+            }
+
+            Then("The status is empty") {
+                assertTrue { result.status == "" }
+            }
+        }
     }
 })
