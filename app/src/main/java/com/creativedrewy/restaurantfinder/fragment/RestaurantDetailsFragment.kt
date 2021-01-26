@@ -5,22 +5,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.creativedrewy.restaurantfinder.R
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
+import com.creativedrewy.restaurantfinder.databinding.FragmentRestaurantDetailsBinding
+import com.creativedrewy.restaurantfinder.viewmodel.RestaurantDetailsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-/**
- *
- */
+@AndroidEntryPoint
 class RestaurantDetailsFragment : Fragment() {
 
-    //val safeArgs: UrlDisplayFragmentArgs by navArgs()
+    private val safeArgs: RestaurantDetailsFragmentArgs by navArgs()
+    private val viewModel: RestaurantDetailsViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var viewBinding: FragmentRestaurantDetailsBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_restaurant_details, container, false)
+        viewBinding = FragmentRestaurantDetailsBinding.inflate(inflater, container, false)
+
+        return viewBinding.root
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        viewModel.viewState.observe(viewLifecycleOwner) {
+
+        }
+
+        viewModel.loadRestaurant(safeArgs.id)
+    }
 }
