@@ -11,7 +11,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class RestaurantListViewModel @ViewModelInject constructor(
-    private val restaurantsUseCase: RestaurantsListUseCase
+    private val restaurantsUseCase: RestaurantsListUseCase,
+    private val viewStateMapping: ListItemViewStateMapping
 ) : ViewModel() {
 
     val viewState: MutableLiveData<ListViewState> = MutableLiveData()
@@ -27,15 +28,7 @@ class RestaurantListViewModel @ViewModelInject constructor(
 
                     val result = restaurantsUseCase.listRestaurants(latitude, longitude)
                     viewState.postValue(RestaurantList(
-                        restaurants = result.stores.map {
-                            RestaurantDetails(
-                                isLoading = false,
-                                displayName = it.name,
-                                desc = it.description,
-                                status = "10 mins",
-                                imageUrl = it.coverImgUrl
-                            )
-                        }
+                        restaurants = result.stores.map(viewStateMapping::mapDtoToViewState)
                     ))
                 } catch (e: Exception) {
                     viewState.postValue(ErrorResult)

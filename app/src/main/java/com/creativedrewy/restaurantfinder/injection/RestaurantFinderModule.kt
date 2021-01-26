@@ -1,5 +1,7 @@
 package com.creativedrewy.restaurantfinder.injection
 
+import android.content.Context
+import android.content.res.Resources
 import com.creativedrewy.restaurantfinder.BuildConfig
 import com.creativedrewy.restaurantfinder.api.RestaurantsEndpoints
 import com.google.gson.FieldNamingPolicy
@@ -9,6 +11,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -16,6 +19,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(ApplicationComponent::class)
 class RestaurantFinderModule {
+
+    @Singleton
+    @Provides
+    fun provideResources(@ApplicationContext context: Context): Resources {
+        return context.resources
+    }
 
     @Singleton
     @Provides
