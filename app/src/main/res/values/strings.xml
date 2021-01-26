@@ -2,4 +2,6 @@
     <string name="app_name">Restaurant Finder</string>
     <string name="cry_text">😿</string>
     <string name="error_loading">Sorry, we had a problem loading your data</string>
+    <string name="store_closed">Closed</string>
+    <string name="asap_minutes">%1$d mins</string>
 </resources>

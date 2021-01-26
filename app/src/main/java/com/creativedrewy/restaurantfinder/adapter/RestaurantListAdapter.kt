@@ -26,6 +26,10 @@ class RestaurantListAdapter: ListAdapter<RestaurantDetails, RestaurantListAdapte
                 binding.itemMotionlayout.getTransition(R.id.loading_transition).autoTransition = MotionScene.Transition.AUTO_NONE
                 binding.itemMotionlayout.getTransition(R.id.reset_transition).autoTransition = MotionScene.Transition.AUTO_NONE
                 binding.itemMotionlayout.transitionToState(R.id.loading_end)
+
+                binding.restaurantImageview.alpha = 1.0f
+            } else {
+                binding.restaurantImageview.alpha = 0.4f
             }
 
             Glide.with(binding.root)
