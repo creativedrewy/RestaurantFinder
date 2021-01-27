@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.creativedrewy.restaurantfinder.usecase.RestaurantsListUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -26,7 +27,7 @@ class RestaurantListViewModel @ViewModelInject constructor(
             withContext(Dispatchers.IO) {
                 try {
                     //Put this in here so it forces the UI to show my snazzy loading animation :)
-                    //delay(1000)
+                    delay(1000)
 
                     val result = restaurantsUseCase.listRestaurants(latitude, longitude)
                     viewState.postValue(RestaurantList(

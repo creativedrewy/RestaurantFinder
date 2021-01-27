@@ -10,7 +10,10 @@ class RestaurantDiffCallback: DiffUtil.ItemCallback<RestaurantDetails>() {
     }
 
     override fun areContentsTheSame(oldItem: RestaurantDetails, newItem: RestaurantDetails): Boolean {
-        return false
+        return oldItem.status == newItem.status &&
+                oldItem.imageUrl == newItem.imageUrl &&
+                oldItem.displayName == newItem.displayName &&
+                oldItem.deliveryFee == newItem.deliveryFee
     }
 
 }

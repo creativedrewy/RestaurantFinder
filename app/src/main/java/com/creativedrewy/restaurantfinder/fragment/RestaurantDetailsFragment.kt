@@ -37,7 +37,7 @@ class RestaurantDetailsFragment : Fragment() {
         viewModel.viewState.observe(viewLifecycleOwner) {
             when (it) {
                 is DetailsLoading -> {
-                    //This feels pretty hacky to get the repeat loading animation to work. Probably a better way to do it.
+                    //This feels kinda wrong to get the repeat loading animation to work. Probably a better way to do it.
                     viewBinding.detailsLayout.setTransitionListener(object : MotionLayout.TransitionListener {
                         override fun onTransitionCompleted(motionLayout: MotionLayout?, p1: Int) {
                             motionLayout?.setTransition(R.id.start, R.id.end)
