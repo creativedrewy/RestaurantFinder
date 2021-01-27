@@ -12,11 +12,12 @@
         android:id="@+id/header_imageview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         app:layout_constraintDimensionRatio="16:9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_image_placeholder_24"
         tools:src="@tools:sample/backgrounds/scenic" />
 
     <TextView
@@ -129,5 +130,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detail_cry_texview" />
+
+    <View
+        android:id="@+id/details_loading1_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#c3c3c3"
+        app:layout_constraintBottom_toBottomOf="@+id/store_name_textview"
+        app:layout_constraintStart_toStartOf="@+id/store_name_textview"
+        app:layout_constraintTop_toTopOf="@+id/store_name_textview" />
+
+    <View
+        android:id="@+id/details_loading2_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#c3c3c3"
+        app:layout_constraintBottom_toBottomOf="@+id/store_desc_textview"
+        app:layout_constraintStart_toStartOf="@+id/store_desc_textview"
+        app:layout_constraintTop_toTopOf="@+id/store_desc_textview" />
+
+    <View
+        android:id="@+id/details_loading3_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#c3c3c3"
+        app:layout_constraintBottom_toBottomOf="@+id/phone_textview"
+        app:layout_constraintStart_toStartOf="@+id/phone_textview"
+        app:layout_constraintTop_toTopOf="@+id/phone_textview" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

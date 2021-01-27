@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -36,7 +37,20 @@ class RestaurantDetailsFragment : Fragment() {
         viewModel.viewState.observe(viewLifecycleOwner) {
             when (it) {
                 is DetailsLoading -> {
+                    //This feels pretty hacky to get the repeat loading animation to work. Probably a better way to do it.
+                    viewBinding.detailsLayout.setTransitionListener(object : MotionLayout.TransitionListener {
+                        override fun onTransitionCompleted(motionLayout: MotionLayout?, p1: Int) {
+                            motionLayout?.setTransition(R.id.start, R.id.end)
+                            motionLayout?.transitionToEnd()
+                        }
 
+                        override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) { }
+                        override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) { }
+                        override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) { }
+                    })
+
+                    viewBinding.detailsLayout.setTransition(R.id.start, R.id.end)
+                    viewBinding.detailsLayout.transitionToEnd()
                 }
                 is DetailsError -> {
                     viewBinding.detailCryTexview.visibility = View.VISIBLE
@@ -53,9 +67,11 @@ class RestaurantDetailsFragment : Fragment() {
 
                         Glide.with(requireContext())
                             .load(it.details.imageUrl)
-                            .placeholder(R.drawable.ic_image_placeholder_24)
                             .centerCrop()
                             .into(headerImageview)
+
+                        detailsLayout.setTransitionListener(null)
+                        detailsLayout.setTransition(R.id.start, R.id.start)
                     }
                 }
             }

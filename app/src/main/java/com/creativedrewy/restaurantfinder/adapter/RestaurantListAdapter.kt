@@ -25,9 +25,9 @@ class RestaurantListAdapter: ListAdapter<RestaurantDetails, RestaurantListAdapte
     class ViewHolder(private val binding: ItemRestaurantListBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(restaurant: RestaurantDetails, onClick: (Int) -> Unit = { _ -> }) {
             if (!restaurant.isLoading) {
-                binding.itemMotionlayout.getTransition(R.id.loading_transition).autoTransition = MotionScene.Transition.AUTO_NONE
-                binding.itemMotionlayout.getTransition(R.id.reset_transition).autoTransition = MotionScene.Transition.AUTO_NONE
-                binding.itemMotionlayout.transitionToState(R.id.loading_end)
+                binding.itemMotionlayout.getTransition(R.id.loading_transition).autoTransition = MotionScene.Transition.AUTO_JUMP_TO_START
+                binding.itemMotionlayout.getTransition(R.id.reset_transition).autoTransition = MotionScene.Transition.AUTO_JUMP_TO_START
+                binding.itemMotionlayout.setTransition(R.id.start, R.id.start)
 
                 binding.restaurantImageview.alpha = 1.0f
 
