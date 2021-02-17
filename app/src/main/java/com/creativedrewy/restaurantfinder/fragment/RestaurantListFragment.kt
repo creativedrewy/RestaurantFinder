@@ -61,7 +61,7 @@ class RestaurantListFragment : Fragment() {
         }
 
         adapter.favoriteClickListener = {
-
+            viewModel.toggleFavorite(it)
         }
 
         //Currently hard-coded to DoorDash HQ coords

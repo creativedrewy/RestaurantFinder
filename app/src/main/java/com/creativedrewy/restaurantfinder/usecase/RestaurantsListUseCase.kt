@@ -31,4 +31,8 @@ class RestaurantsListUseCase @Inject constructor(
         )
     }
 
+    fun toggleFavoriteRestaurant(id: Int) {
+        favoriteRestaurants.toggleFavorites(id)
+    }
+
 }

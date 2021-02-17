@@ -35,4 +35,13 @@ class RestaurantListViewModel @ViewModelInject constructor(
             }
         }
     }
+
+    fun toggleFavorite(id: Int) {
+        restaurantsUseCase.toggleFavoriteRestaurant(id)
+
+//        val result = restaurantsUseCase.listRestaurants(latitude, longitude)
+//        viewState.postValue(RestaurantList(
+//            restaurants = result.stores.map(viewStateMapping::mapDtoToViewState)
+//        ))
+    }
 }
