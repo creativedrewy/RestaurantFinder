@@ -12,6 +12,7 @@ import com.creativedrewy.restaurantfinder.viewmodel.RestaurantDetails
 
 class RestaurantListAdapter: ListAdapter<RestaurantDetails, RestaurantListAdapter.ViewHolder>(RestaurantDiffCallback()) {
 
+    var favoriteClickListener: (Int) -> Unit = { _ -> }
     var rowClickListener: (Int) -> Unit = { _ -> }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -19,11 +20,15 @@ class RestaurantListAdapter: ListAdapter<RestaurantDetails, RestaurantListAdapte
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position), rowClickListener)
+        holder.bind(getItem(position), rowClickListener, favoriteClickListener)
     }
 
     class ViewHolder(private val binding: ItemRestaurantListBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(restaurant: RestaurantDetails, onClick: (Int) -> Unit = { _ -> }) {
+        fun bind(
+            restaurant: RestaurantDetails,
+            rowClick: (Int) -> Unit = { _ -> },
+            favoriteClick: (Int) -> Unit = { _ -> }
+        ) {
             if (!restaurant.isLoading) {
                 binding.itemMotionlayout.getTransition(R.id.loading_transition).autoTransition = MotionScene.Transition.AUTO_JUMP_TO_START
                 binding.itemMotionlayout.getTransition(R.id.reset_transition).autoTransition = MotionScene.Transition.AUTO_JUMP_TO_START
@@ -31,7 +36,8 @@ class RestaurantListAdapter: ListAdapter<RestaurantDetails, RestaurantListAdapte
 
                 binding.restaurantImageview.alpha = 1.0f
 
-                binding.root.setOnClickListener { onClick(restaurant.id) }
+                binding.favoriteImageview.setOnClickListener { favoriteClick(restaurant.id) }
+                binding.root.setOnClickListener { rowClick(restaurant.id) }
             } else {
                 binding.restaurantImageview.alpha = 0.4f
             }
@@ -45,6 +51,12 @@ class RestaurantListAdapter: ListAdapter<RestaurantDetails, RestaurantListAdapte
             binding.nameTextview.text = restaurant.displayName
             binding.descTextview.text = restaurant.desc
             binding.statusTextview.text = restaurant.status
+
+            if (restaurant.isFavorite) {
+                binding.favoriteImageview.setImageResource(android.R.drawable.btn_star_big_on)
+            } else {
+                binding.favoriteImageview.setImageResource(android.R.drawable.btn_star)
+            }
         }
     }
 }

@@ -24,5 +24,6 @@ data class RestaurantDetails(
     val displayName: String = "",
     val desc: String = "",
     val status: String = "",
-    val imageUrl: String = ""
+    val imageUrl: String = "",
+    val isFavorite: Boolean = false
 )
