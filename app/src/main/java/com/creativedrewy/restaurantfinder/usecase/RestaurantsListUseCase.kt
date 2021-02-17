@@ -16,17 +16,23 @@ class RestaurantsListUseCase @Inject constructor(
     private var listOffset: Int = 0
     private var loadLimit: Int = 50
 
+    private var cachedResults: RestaurantListDto = RestaurantListDto(0, 0, listOf())
+
     suspend fun listRestaurants(lat: Double, long: Double): RestaurantListDto {
-        val apiResults = restaurantsRepository.loadRestaurants(lat, long, listOffset, loadLimit)
+        cachedResults = restaurantsRepository.loadRestaurants(lat, long, listOffset, loadLimit)
+        return updateFavoritedRestaurants()
+    }
+
+    fun updateFavoritedRestaurants(): RestaurantListDto {
         val favorites = favoriteRestaurants.getFavoritedRestuarnts()
 
-        val newStores = apiResults.stores.map { restaurantDto ->
+        val newStores = cachedResults.stores.map { restaurantDto ->
             restaurantDto.copy(
                 isFavorite = favorites.contains(restaurantDto.id)
             )
         }
 
-        return apiResults.copy(
+        return cachedResults.copy(
             stores = newStores
         )
     }

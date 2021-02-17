@@ -4,6 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.creativedrewy.restaurantfinder.api.RestaurantListDto
 import com.creativedrewy.restaurantfinder.usecase.RestaurantsListUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,9 +27,7 @@ class RestaurantListViewModel @ViewModelInject constructor(
             withContext(Dispatchers.IO) {
                 try {
                     val result = restaurantsUseCase.listRestaurants(latitude, longitude)
-                    viewState.postValue(RestaurantList(
-                        restaurants = result.stores.map(viewStateMapping::mapDtoToViewState)
-                    ))
+                    postLatestRestaurants(result)
                 } catch (e: Exception) {
                     viewState.postValue(ErrorResult)
                 }
@@ -38,10 +37,12 @@ class RestaurantListViewModel @ViewModelInject constructor(
 
     fun toggleFavorite(id: Int) {
         restaurantsUseCase.toggleFavoriteRestaurant(id)
+        postLatestRestaurants(restaurantsUseCase.updateFavoritedRestaurants())
+    }
 
-//        val result = restaurantsUseCase.listRestaurants(latitude, longitude)
-//        viewState.postValue(RestaurantList(
-//            restaurants = result.stores.map(viewStateMapping::mapDtoToViewState)
-//        ))
+    private fun postLatestRestaurants(dto: RestaurantListDto) {
+        viewState.postValue(RestaurantList(
+            restaurants = dto.stores.map(viewStateMapping::mapDtoToViewState)
+        ))
     }
 }
