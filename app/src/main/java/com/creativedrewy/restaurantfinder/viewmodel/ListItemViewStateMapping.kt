@@ -17,7 +17,8 @@ class ListItemViewStateMapping @Inject constructor(
             displayName = dto.name,
             desc = dto.description,
             imageUrl = dto.coverImgUrl,
-            status = getStatusString(dto.status)
+            status = getStatusString(dto.status),
+            isFavorite = dto.isFavorite
         )
     }
 

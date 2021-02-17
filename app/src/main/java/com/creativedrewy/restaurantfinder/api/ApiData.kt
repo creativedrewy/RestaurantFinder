@@ -11,6 +11,7 @@ data class RestaurantDto(
     val name: String,
     val description: String,
     val coverImgUrl: String,
+    val isFavorite: Boolean,    //This didn't come from the API
     val status: RestaurantStatusDto
 )
 

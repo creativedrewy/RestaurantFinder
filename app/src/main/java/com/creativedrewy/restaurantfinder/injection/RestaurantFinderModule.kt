@@ -1,6 +1,7 @@
 package com.creativedrewy.restaurantfinder.injection
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.Resources
 import com.creativedrewy.restaurantfinder.BuildConfig
 import com.creativedrewy.restaurantfinder.api.RestaurantsEndpoints
@@ -24,6 +25,12 @@ class RestaurantFinderModule {
     @Provides
     fun provideResources(@ApplicationContext context: Context): Resources {
         return context.resources
+    }
+
+    @Singleton
+    @Provides
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("RestaurantFinder", Context.MODE_PRIVATE)
     }
 
     @Singleton

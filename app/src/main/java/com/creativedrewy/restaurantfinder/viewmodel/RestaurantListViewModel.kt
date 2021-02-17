@@ -35,5 +35,4 @@ class RestaurantListViewModel @ViewModelInject constructor(
             }
         }
     }
-
 }
