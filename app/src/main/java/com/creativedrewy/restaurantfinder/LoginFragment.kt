@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.creativedrewy.restaurantfinder.databinding.FragmentLoginBinding
-import com.creativedrewy.restaurantfinder.viewmodel.AlreadyLoggedIn
 import com.creativedrewy.restaurantfinder.viewmodel.LoginFailure
 import com.creativedrewy.restaurantfinder.viewmodel.LoginSuccess
 import com.creativedrewy.restaurantfinder.viewmodel.LoginViewModel
@@ -30,6 +29,14 @@ class LoginFragment : Fragment() {
         return viewBinding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (viewModel.checkIsLoggedIn()) {
+            navigateToListFragment()
+        }
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -42,9 +49,6 @@ class LoginFragment : Fragment() {
 
         viewModel.viewState.observe(viewLifecycleOwner) { state ->
             when (state) {
-                AlreadyLoggedIn -> {
-                    navigateToListFragment()
-                }
                 LoginSuccess -> {
                     navigateToListFragment()
                 }
@@ -53,8 +57,6 @@ class LoginFragment : Fragment() {
                 }
             }
         }
-
-        viewModel.checkIsLoggedIn()
     }
 
     private fun navigateToListFragment() {
