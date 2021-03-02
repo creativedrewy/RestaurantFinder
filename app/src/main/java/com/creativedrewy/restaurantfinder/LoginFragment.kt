@@ -6,7 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.creativedrewy.restaurantfinder.databinding.FragmentLoginBinding
+import com.creativedrewy.restaurantfinder.viewmodel.AlreadyLoggedIn
+import com.creativedrewy.restaurantfinder.viewmodel.LoginFailure
+import com.creativedrewy.restaurantfinder.viewmodel.LoginSuccess
 import com.creativedrewy.restaurantfinder.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,8 +34,28 @@ class LoginFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewBinding.loginButton.setOnClickListener {
-
             viewModel.loginToDoorDash("dd-interview@doordash.com", "doordash123")
         }
+
+        viewModel.viewState.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                AlreadyLoggedIn -> {
+                    navigateToListFragment()
+                }
+                LoginSuccess -> {
+                    navigateToListFragment()
+                }
+                LoginFailure -> {
+
+                }
+            }
+        }
+
+        viewModel.checkIsLoggedIn()
+    }
+
+    private fun navigateToListFragment() {
+        viewBinding.root.findNavController()
+            .navigate(LoginFragmentDirections.actionLoginFragment2ToRestaurantListFragment())
     }
 }
