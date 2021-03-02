@@ -24,11 +24,15 @@ class LoginViewModel @ViewModelInject constructor(
     val viewState: MutableLiveData<LoginViewState> = MutableLiveData()
 
     fun loginToDoorDash(email: String, password: String) {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                loginUseCase.logIn(email, password)
+        try {
+            viewModelScope.launch {
+                withContext(Dispatchers.IO) {
+                    loginUseCase.logIn(email, password)
+                    viewState.postValue(LoginSuccess)
+                }
             }
-
+        } catch (e: Exception) {
+            viewState.postValue(LoginFailure)
         }
     }
 

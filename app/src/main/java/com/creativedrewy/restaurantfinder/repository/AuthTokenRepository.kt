@@ -16,6 +16,8 @@ class AuthTokenRepository @Inject constructor(
     }
 
     fun isTokenPresent(): Boolean {
-        return prefs.getBoolean(CACHED_TOKEN, false)
+        val cachedToken = prefs.getString(CACHED_TOKEN, "")
+
+        return cachedToken?.isNotEmpty() ?: false
     }
 }

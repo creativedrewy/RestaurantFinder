@@ -34,7 +34,10 @@ class LoginFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewBinding.loginButton.setOnClickListener {
-            viewModel.loginToDoorDash("dd-interview@doordash.com", "doordash123")
+            viewModel.loginToDoorDash(
+                viewBinding.emailInputTextview.text.toString(),
+                viewBinding.passwordInputTextview.text.toString()
+            )
         }
 
         viewModel.viewState.observe(viewLifecycleOwner) { state ->
