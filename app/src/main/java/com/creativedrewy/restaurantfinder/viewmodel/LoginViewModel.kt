@@ -33,6 +33,8 @@ class LoginViewModel @ViewModelInject constructor(
     }
 
     fun checkIsLoggedIn() {
-        viewState.postValue(AlreadyLoggedIn)
+        if (loginUseCase.checkLoginStatus()) {
+            viewState.postValue(AlreadyLoggedIn)
+        }
     }
 }
