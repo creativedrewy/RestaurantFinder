@@ -11,8 +11,6 @@ import kotlinx.coroutines.withContext
 
 sealed class LoginViewState
 
-object AlreadyLoggedIn: LoginViewState()
-
 object LoginSuccess: LoginViewState()
 
 object LoginFailure: LoginViewState()
