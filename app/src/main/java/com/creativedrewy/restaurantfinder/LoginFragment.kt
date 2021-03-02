@@ -41,6 +41,8 @@ class LoginFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewBinding.loginButton.setOnClickListener {
+            viewBinding.resultTextview.text = ""
+
             viewModel.loginToDoorDash(
                 viewBinding.emailInputTextview.text.toString(),
                 viewBinding.passwordInputTextview.text.toString()
@@ -53,7 +55,7 @@ class LoginFragment : Fragment() {
                     navigateToListFragment()
                 }
                 LoginFailure -> {
-
+                    viewBinding.resultTextview.text = "Invalid email address or password"
                 }
             }
         }
