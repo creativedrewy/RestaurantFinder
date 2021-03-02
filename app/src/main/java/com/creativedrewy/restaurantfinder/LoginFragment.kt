@@ -31,6 +31,7 @@ class LoginFragment : Fragment() {
 
         viewBinding.loginButton.setOnClickListener {
 
+            viewModel.loginToDoorDash("dd-interview@doordash.com", "doordash123")
         }
     }
 }

@@ -1,8 +1,6 @@
 package com.creativedrewy.restaurantfinder.repository
 
-import com.creativedrewy.restaurantfinder.api.RestaurantInfoDto
-import com.creativedrewy.restaurantfinder.api.RestaurantListDto
-import com.creativedrewy.restaurantfinder.api.RestaurantsEndpoints
+import com.creativedrewy.restaurantfinder.api.*
 import javax.inject.Inject
 
 /**
@@ -11,6 +9,11 @@ import javax.inject.Inject
 class RestaurantsRepository @Inject constructor(
     private val endpoints: RestaurantsEndpoints
 ) {
+
+    suspend fun logIn(email: String, pass: String): LoginResponseDto {
+        val body = LoginRequestDto(email, pass)
+        return endpoints.logInToSite(body)
+    }
 
     suspend fun loadRestaurants(lat: Double, long: Double, offset: Int, limit: Int): RestaurantListDto {
         return endpoints.loadRestaurantList(lat, long, offset, limit)

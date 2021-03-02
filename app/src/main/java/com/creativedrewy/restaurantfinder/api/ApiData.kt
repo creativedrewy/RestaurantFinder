@@ -29,3 +29,12 @@ data class RestaurantInfoDto(
     val name: String,
     val coverImgUrl: String
 )
+
+data class LoginRequestDto(
+    val email: String,
+    val password: String
+)
+
+data class LoginResponseDto(
+    val token: String
+)
